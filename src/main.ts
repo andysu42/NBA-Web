@@ -4,7 +4,15 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
-import router from './router'
+
+import { createRouter, createWebHistory } from 'vue-router'
+import generatedRoutes from 'virtual:generated-pages'
+import { setupLayouts } from 'virtual:generated-layouts'
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: setupLayouts(generatedRoutes)
+})
 
 const app = createApp(App)
 
